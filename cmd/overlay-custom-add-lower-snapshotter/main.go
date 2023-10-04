@@ -26,17 +26,17 @@ func main() {
 			&cli.StringFlag{
 				Name:  "root-dir",
 				Value: snapshotter.DefaultRootDir,
-				Usage: "adds as an optional label \"containerd.io/snapshot/overlay.upperdir\"",
+				Usage: "Adds as an optional label \"containerd.io/snapshot/overlay.upperdir\"",
 			},
 			&cli.BoolFlag{
 				Name:  "async-remove",
 				Value: true,
-				Usage: "defers removal of filesystem content until the Cleanup method is called",
+				Usage: "Defers removal of filesystem content until the Cleanup method is called",
 			},
 			&cli.BoolFlag{
 				Name:  "upperdir-label",
 				Value: false,
-				Usage: "asynchronousRemove defers removal of filesystem content until the Cleanup method is called",
+				Usage: "AsynchronousRemove defers removal of filesystem content until the Cleanup method is called",
 			},
 		},
 		Action: func(ctx *cli.Context) error {
