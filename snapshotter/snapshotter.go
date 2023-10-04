@@ -78,7 +78,7 @@ func (s *overlayCustomAddLowerSnapshotter) tryAddLowers(ctx context.Context, key
 	}
 	for i, o := range mounts[0].Options {
 		if strings.HasPrefix(o, "lowerdir=") {
-			mounts[0].Options[i] = lowerPathString + ":" + o
+			mounts[0].Options[i] = "lowerdir=" + lowerPathString + ":" + strings.TrimPrefix(o, "lowerdir=")
 			break
 		}
 	}
