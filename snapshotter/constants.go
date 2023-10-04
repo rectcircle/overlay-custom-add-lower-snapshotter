@@ -9,5 +9,8 @@ const (
 	// 默认为 /var/lib/containerd/cn.rectcircle.containerd.overlay-custom-add-lower-snapshotter/grpc.socks
 	SocksFileName = "grpc.socks"
 	// 实现添加自定义 lower 路径的 label key，支持多个路径，以分号 : 分隔。
-	LabelCustomAddLowerPaths = "cn.rectcircle.containerd/overlay-custom-add-lower.paths"
+	// label 必须以 containerd.io/snapshot/ 开头，参见，containerd 源码：
+	//   `snapshots/snapshotter.go@FilterInheritedLabels`
+	//   `metadata/snapshot.go@createSnapshot`
+	LabelCustomAddLowerPaths = "containerd.io/snapshot/overlay-custom-add-lower.paths"
 )
