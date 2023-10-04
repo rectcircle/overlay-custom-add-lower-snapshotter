@@ -21,6 +21,7 @@ func NewSnapshotter(root string, opts ...overlay.Opt) (snapshots.Snapshotter, er
 	return &overlayCustomAddLowerSnapshotter{sn}, nil
 }
 
+// overlayCustomAddLowerSnapshotter 继承 overlay Snapshotter，在返回 mounts 的地方进行改造
 type overlayCustomAddLowerSnapshotter struct {
 	snapshots.Snapshotter
 }
@@ -52,6 +53,7 @@ func (s *overlayCustomAddLowerSnapshotter) View(ctx context.Context, key string,
 	return s.tryAddLowers(ctx, key, mounts)
 }
 
+// tryAddLowers 所有返回 mounts 的地方，都需要调用该函数，根据 label ，给 lower 选项添加自定义的 lower 路径。
 func (s *overlayCustomAddLowerSnapshotter) tryAddLowers(ctx context.Context, key string, mounts []mount.Mount) ([]mount.Mount, error) {
 	if len(mounts) != 1 || mounts[0].Type != "overlay" {
 		return mounts, nil
